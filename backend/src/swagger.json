@@ -1,0 +1,294 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Api de integração ...",
+        "description": "Essa API tem como objetivo a integração ... ",
+        "termsOfService": "",
+        "contact": {
+            "email": "inacio.fabricio.nunes@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:5000/api/",
+            "description": "API de teste"
+        }
+    ],
+    "paths": {
+        "/usuario/login": {
+            "post": {
+                "description": "Essa rota será responsável pela realização do login",
+                "tags": ["Usuário"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "senha": {
+                                        "type": "string",
+                                        "required": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Bad resquest"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
+            }
+        },
+        "/usuario/registro": {
+            "post": {
+                "description": "Essa rota será responsável pelo cadastro de novos usuarios",
+                "tags": ["Usuário"],
+                "security": [{ "bearerAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "senha": {
+                                        "type": "string"
+                                    },
+                                    "funcao": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Bad resquest"
+                    },
+                    "401": {
+                        "description": "Not authorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
+            }
+        },
+        "/usuario/me": {
+            "get": {
+                "description": "Essa rota será responsável pelo cadastro de novos usuarios",
+                "tags": ["Usuário"],
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "400": {
+                        "description": "Bad resquest"
+                    },
+                    "401": {
+                        "description": "Not authorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
+            }
+        },
+        "/local/": {
+            "get": {
+                "description": "Essa rota será responsável por retornar os Locais já cadastrados.",
+                "tags": ["Local"],
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
+            },
+            "post": {
+                "description": "Essa rota será responsável por cadastrar um novo Local.",
+                "tags": ["Local"],
+                "security": [{ "bearerAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Bad resquest"
+                    },
+                    "401": {
+                        "description": "Not authorized"
+                    },
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
+            }
+        },
+        "/local/{id}": {
+            "get": {
+                "description": "Essa rota será responsável por retornar um Local correspondente ao ID informado",
+                "tags": ["Local"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do Local",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            },
+            "put": {
+                "description": "Essa rota será responsável por alterar um novo Local.",
+                "tags": ["Local"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do Local",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "400": {
+                        "description": "Bad resquest"
+                    },
+                    "401": {
+                        "description": "Not authorized"
+                    },
+                    "500": {
+                        "description": "Internal Error Server"
+                    }
+                }
+            },
+            "delete": {
+                "description": "Essa rota será responsável por apagar um Local correspondente ao ID informado",
+                "tags": ["Local"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do Local",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Error Server"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Usuario": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "senha": {
+                        "type": "string"
+                    },
+                    "funcao": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Local": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}

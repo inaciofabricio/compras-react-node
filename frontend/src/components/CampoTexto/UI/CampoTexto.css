@@ -1,0 +1,22 @@
+.campo-texto {
+    color: #000000;
+    background-color: #FFFFFF;
+    padding: 15px;
+    border-radius: 5px;
+    outline: none;
+    background-image: -webkit-linear-gradient(90deg, #000000 50%, transparent 50%);
+    background-image: linear-gradient(90deg, #000000 50%, transparent 50%);
+    background-position: 100%;
+    background-size: 400%;
+    -webkit-transition: background 300ms ease-in-out;
+    transition: background 300ms ease-in-out;
+}
+
+.campo-texto:focus {
+    color: #FFFFFF;
+    background-position: 0;
+}
+.campo-texto:disabled {
+    color: #000000;
+    background-color: #CCCCCC;
+}
